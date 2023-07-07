@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import Candidates from '../candidates.json'
 import CandidateDiv from './CandidateDiv';
 import { toast } from 'react-hot-toast';
+import { motion } from 'framer-motion';
 
 const Search = () => {
     const [name, setname] = useState("");
@@ -72,7 +73,15 @@ const Search = () => {
             <Navbar />
             <div className='flex flex-col mt-10 justify-center items-center px-44 '>
                 <div className='flex flex-col w-[100%]'>
-                    <div className='flex '>
+                    <motion.div 
+                    initial={{ y: 20, opacity: 0 }}
+                    transition={{
+                      delay: 0.3,
+                      duration: 0.3
+                    }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{once:true}}
+                    className='flex '>
 
                         <input className="inputBox m-1 lg:ml-2 lg:w-[100%] w-[90%]  "
                             type="text"
@@ -98,25 +107,18 @@ const Search = () => {
 
 
 
-                    </div>
+                    </motion.div>
 
-                    {/* <input className="inputBox m-1 lg:ml-2 lg:w-[50%] w-[90%]  "
-                            type="text"
-                            placeholder="Search by Location"
-                            value={location}
-                            onChange={(e) => handleLocationchange(e)}
-                        />
-                        
-
-                        {/* <input className="inputBox m-1 lg:ml-2 lg:w-[100%] w-[90%]"
-                            type="text"
-                            placeholder="Search by Job Role"
-                            value={role}
-                            onChange={(e) => handleRolechange(e)}
-
-                        /> */}
-
-                    <div className='flex'>
+                   
+                    <motion.div 
+                     initial={{ y: 20, opacity: 0 }}
+                     transition={{
+                       delay: 0.5,
+                       duration: 0.3
+                     }}
+                     whileInView={{ y: 0, opacity: 1 }}
+                     viewport={{once:true}}
+                     className='flex'>
 
                         <select className="inputBox m-1 lg:ml-2 lg:w-[100%] w-[90%]" name="" id="" value={role} onChange={handleRolechange}
 
@@ -132,28 +134,36 @@ const Search = () => {
                         </select>
                         <button onClick={handleSubmit} className='bg-[#ffcb3e] rounded-lg shadow-2xl w-[20%] mx-2 my-1 text-xl font-medium '>Search</button>
 
-                    </div>
+                    </motion.div>
 
                     <div className='flex flex-col items-center justify-center mt-10'>
-                        <div className='w-full h-16 flex justify-start items-center bg-[#0e0d04] shadow-lg border-2 border-[#e0dfd7] text-white mt-4 rounded-md hover:shadow-xl duration-200'>
+                        <motion.div 
+                         initial={{ y: 10, opacity: 0 }}
+                         transition={{
+                           delay: 0.1,
+                           duration: 0.2
+                         }}
+                         whileInView={{ y: 0, opacity: 1 }}
+                         viewport={{once:true}}
+                         className='w-full h-16 flex justify-start items-center bg-[#0e0d04] shadow-lg border-2 border-[#e0dfd7] text-white mt-4 rounded-md hover:shadow-xl duration-200'>
                             <div className='flex-1  flex justify-center text-xl font-semibold '>Candidate's Name</div>
                             <div className='flex-1  flex justify-center text-xl font-semibold '>Age</div>
                             <div className='flex-1  flex justify-center text-xl font-semibold '>Location</div>
                             <div className='flex-1  flex justify-center text-xl font-semibold '>Role</div>
 
-                        </div>
+                        </motion.div>
 
 
 
                         {   
-                             filteredCandidates?.length !== 0 && filteredCandidates.map(it => (
-                                <CandidateDiv name={it.name} age={it.age} location={it.location} role={it.job_role} />
+                             filteredCandidates?.length !== 0 && filteredCandidates.map((it,index) => (
+                                <CandidateDiv name={it.name} age={it.age} location={it.location} role={it.job_role} index={index}/>
                             ))
                         }
 
                         {
-                            name === "" && location === "" && role === "" && Candidates.candidates?.length !== 0 && Candidates.candidates.map(it => (
-                                <CandidateDiv name={it.name} age={it.age} location={it.location} role={it.job_role} />
+                            name === "" && location === "" && role === "" && Candidates.candidates?.length !== 0 && Candidates.candidates.map((it,index) => (
+                                <CandidateDiv name={it.name} age={it.age} location={it.location} role={it.job_role} index={index}/>
                             ))
                         }
                     </div>

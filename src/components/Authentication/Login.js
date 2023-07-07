@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Sparkle from '../../img/sparkle_black.png'
 
 import toast from 'react-hot-toast'
+import { motion } from 'framer-motion';
 
 const Login = ({ isNew, setisNew }) => {
 
@@ -44,7 +45,15 @@ const Login = ({ isNew, setisNew }) => {
   return (
 
     <>
-      <form className='flex-1 flex justify-start items-start'>
+      <motion.form 
+      initial={{  opacity: 0 }}
+      transition={{
+        delay: 0.5,
+        duration: 0.4
+      }}
+      whileInView={{ opacity: 1 }}
+      viewport={{once:true}}
+      className='flex-1 flex justify-start items-start'>
 
 
         <div className='modal-left flex-1 flex flex-col gap-2 justify-start lg:items-start items-center'>
@@ -74,7 +83,7 @@ const Login = ({ isNew, setisNew }) => {
           <p className='lg:ml-8 mt-2 lg:mt-1 mb-6 lg:mb-1' >Don't have an account <span className='text-[#FFC727] cursor-pointer ml-1 font-semibold' onClick={() => { setisNew(!isNew) }}>Sign up</span></p>
         </div>
 
-      </form>
+      </motion.form>
     </>
 
   )

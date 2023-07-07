@@ -4,6 +4,7 @@ import Hero2 from '../../img/login.svg'
 import "../../App.css"
 import Login from './Login';
 import Register from './Register';
+import { motion } from 'framer-motion';
 
 
 const Authentication = () => {
@@ -20,7 +21,15 @@ const Authentication = () => {
             
           :<Login isNew={isNew} setisNew={setisNew} />
         }
-        <div className=' modal-right lg:flex-[1.3] lg:overflow-y-hidden lg:flex hidden '>
+        <motion.div 
+        initial={{ scale:0, opacity: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.4
+        }}
+        whileInView={{ scale: 1,opacity: 1 }}
+        viewport={{once:true}}
+        className=' modal-right lg:flex-[1.3] lg:overflow-y-hidden lg:flex hidden '>
           {
             isNew?
             <img className='hero' src={Hero1} alt="" />
@@ -29,7 +38,7 @@ const Authentication = () => {
             <img className='hero' src={Hero2} alt="" />
           }
          
-        </div>
+        </motion.div>
       </div>
 
 

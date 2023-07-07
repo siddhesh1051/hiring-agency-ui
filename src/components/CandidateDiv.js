@@ -6,8 +6,8 @@ const CandidateDiv = ({name,age,location,role,index}) => {
     <motion.div 
     initial={{ y: 20, opacity: 0 }}
     transition={{
-      delay: index*0.1,
-      duration: 0.2
+      delay: index*0.05,
+      duration: 0.1
     }}
     whileInView={{ y: 0, opacity: 1 }}
     viewport={{once:true}}

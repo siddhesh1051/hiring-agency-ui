@@ -21,6 +21,7 @@ import person1 from '../img/freelancers/person1.png'
 import person2 from '../img/freelancers/person2.png'
 import person3 from '../img/freelancers/person3.png'
 import person4 from '../img/freelancers/person4.png'
+import Navbar from './Navbar';
 
 
 const HomePage = () => {
@@ -42,10 +43,9 @@ const HomePage = () => {
 
   return (
     <div className="bg-white ">
-      <header className="p-12 py-4 bg-white px-36 ">
-        {/* Navigation bar */}
+      {/* <header className="p-12 py-4 bg-white px-36 ">
         <nav className="container mx-auto flex justify-between items-center px-4">
-          <h2 className='font-bold font-[Oswald] text-4xl'><span className='font-[Oswald] font-medium text-gray-700 '>hire</span>Monk</h2>
+          <h2 className='font-bold font-[Oswald] text-4xl'><span className='font-[Oswald] font-medium text-yellow-600 '>hire</span>Monk</h2>
           <div className='flex justify-between items-center'>
 
             <a href="/" className='mr-16'>Home</a>
@@ -53,12 +53,12 @@ const HomePage = () => {
             <a href="/" className='mr-16'>Parters</a>
             <a href="/" className='mr-16'>Contact Us</a>
           </div>{
-          !isLogin?<button className='bg-gradient-to-r font-semibold text-[#4a4a4a] shadow-xl from-[#e7dc02] to-[#7d9300] py-2 px-6 rounded-[50px]'
+          !isLogin?<button className='bg-gradient-to-r font-semibold text-black shadow-xl from-[#ffcb3e] to-[#b48403] py-2 px-6 rounded-[50px]'
             onClick={()=>{navigate('/auth')}}
           >
             
             Login</button>
-          :<button className='bg-gradient-to-r font-semibold text-[#4a4a4a] shadow-xl from-[#e7dc02] to-[#7d9300] py-2 px-6 rounded-[50px]'
+          :<button className='bg-gradient-to-r font-semibold text-black shadow-xl from-[#ffcb3e] to-[#b48403] py-2 px-6 rounded-[50px]'
             onClick={()=>{navigate('/'); localStorage.removeItem('email'); localStorage.removeItem('password');setisLogin(false)}}
           >
             
@@ -66,7 +66,9 @@ const HomePage = () => {
 }
 
         </nav>
-      </header>
+      </header> */}
+
+      <Navbar/>
 
       <main className="container bg-white mx-auto py-8 px-24">
         <section className='flex flex-col justify-center items-center px-24'>
@@ -286,7 +288,7 @@ const HomePage = () => {
 
       <footer className=" bg-black text-white shadow-md  px-32 pt-10 flex justify-between items-center">
         <div className='flex flex-col text-bold text-start '>
-        <h2 className='font-bold font-[Oswald] text-4xl'><span className='font-[Oswald] font-medium text-[#959595]'>hire</span>Monk</h2>           
+        <h2 className='font-bold font-[Oswald] text-4xl'><span className='font-[Oswald] font-medium text-yellow-600'>hire</span>Monk</h2>           
         <p className='text-xl font-normal mt-3 text-[#BEBEBE] '> 11, Vittal Mallya Rd, KG Halli, KP Nagar<br /> Bengaluru, Karnataka 560001
 </p>
         <img className='h-48 z-20 ' src={sparkle} alt="" srcset="" />

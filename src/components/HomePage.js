@@ -1,13 +1,45 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { LuArrowDownRightFromCircle, LuArrowRightCircle, LuBuilding2, LuUser } from 'react-icons/lu';
+import React , {useEffect,useState} from 'react';
+// import { motion } from 'framer-motion';
+import {  LuBuilding2, LuUser } from 'react-icons/lu';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
-import person from '../img/personpng.png'
+import hero_img from '../img/hero_img.svg'
 import JobCard from './JobCard';
 import sparkle from '../img/sparkle.png'
 import companies from '../img/companies.png'
+import { useNavigate } from "react-router-dom";
+import google from '../img/companiesLogo/google.svg'
+import fb from '../img/companiesLogo/fb.svg'
+import slack from '../img/companiesLogo/slack.svg'
+import insta from '../img/companiesLogo/insta.svg'
+import snap from '../img/companiesLogo/snap.svg'
+import airbnb from '../img/companiesLogo/airbnb.svg'
+import apple from '../img/companiesLogo/apple.svg'
+import mcd from '../img/companiesLogo/mcd.svg'
+import Twitter from '../img/companiesLogo/twitter.svg'
+import xd from '../img/companiesLogo/xd.svg'
+import person1 from '../img/freelancers/person1.png'
+import person2 from '../img/freelancers/person2.png'
+import person3 from '../img/freelancers/person3.png'
+import person4 from '../img/freelancers/person4.png'
+
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
+  const [isLogin, setisLogin] = useState(false)
+
+  useEffect(() => {
+    const user = localStorage.getItem("email");
+    console.log(user)
+    user==='' || user?
+    setisLogin(true)
+    :
+    setisLogin(false)
+  
+    
+  }, [])
+  
+
   return (
     <div className="bg-white ">
       <header className="p-12 py-4 bg-white px-36 ">
@@ -20,8 +52,19 @@ const HomePage = () => {
             <a href="/" className='mr-16'>Blog</a>
             <a href="/" className='mr-16'>Parters</a>
             <a href="/" className='mr-16'>Contact Us</a>
-          </div>
-          <button className='bg-gradient-to-r font-semibold text-[#4a4a4a] shadow-xl from-[#e7dc02] to-[#7d9300] py-2 px-6 rounded-[50px]'>Login</button>
+          </div>{
+          !isLogin?<button className='bg-gradient-to-r font-semibold text-[#4a4a4a] shadow-xl from-[#e7dc02] to-[#7d9300] py-2 px-6 rounded-[50px]'
+            onClick={()=>{navigate('/auth')}}
+          >
+            
+            Login</button>
+          :<button className='bg-gradient-to-r font-semibold text-[#4a4a4a] shadow-xl from-[#e7dc02] to-[#7d9300] py-2 px-6 rounded-[50px]'
+            onClick={()=>{navigate('/'); localStorage.removeItem('email'); localStorage.removeItem('password');setisLogin(false)}}
+          >
+            
+            Logout</button>
+}
+
         </nav>
       </header>
 
@@ -36,7 +79,7 @@ const HomePage = () => {
                 Find The <span className='font-bold underline underline-offset-8 decoration-yellow-500'>Best Talent</span>
               </h1>
               <p className='text-[#575757] '>
-                We can connect you with our extensive network of Freelancers across the world to find your best talent.
+                We can connect you with our extensive network of Freelancers across the world to find your best fit.
               </p>
 
 
@@ -51,7 +94,7 @@ const HomePage = () => {
                   <p className='text-sm font-[Pathway Extreme] mb-4  text-[#898989]'>
                     Get oppurtunity to work with big companies
                   </p>
-                  <button className='flex justify-center items-center rounded-[50px] px-4 py-2 font-semibold bg-[#FFF0EC] self-end'>
+                  <button onClick={()=>{navigate('/auth')}} className='flex justify-center items-center rounded-[50px] px-4 py-2 font-semibold bg-[#FFF0EC] self-end'>
                     Get Started <BsFillArrowRightCircleFill className='inline ml-2 scale-125 ' />
                   </button>
 
@@ -66,14 +109,14 @@ const HomePage = () => {
                   <p className='text-sm font-[Pathway Extreme] mb-4  text-[#898989]'>
                     Find the best frelancer with professional experience
                   </p>
-                  <button className='flex justify-center items-center rounded-[50px] px-4 py-2 font-semibold bg-white self-end'>
+                  <button onClick={()=>{navigate('/auth')}} className='flex justify-center items-center rounded-[50px] px-4 py-2 font-semibold bg-white self-end'>
                     Get Started <BsFillArrowRightCircleFill className='inline ml-2 scale-125 ' />
                   </button>
                 </div>
               </div>
             </div>
             <div className='flex-[0.9] flex justify-end items-end relative'>
-              <div className='bg-yellow-500 h-[650px] w-[650px] rounded-full right-0 -mr-72 mb-24 bottom-24 z-0 absolute '>
+              <div className='bg-yellow-300 h-[650px] w-[650px] rounded-full right-0 -mr-72 mb-24 bottom-24 z-0 absolute '>
 
               </div>
               {/* <div className='speech-bubble h-24 w-40 text-white bg-[#FD3C8D] self-center rounded-lg p-2  '>
@@ -81,7 +124,7 @@ const HomePage = () => {
                     
                     </div> 
                      */}
-              <img className='z-10 h-[600px] mt-20  ' src={person} alt="" srcset="" />
+              <img className='z-10 h-[600px] mt-20 scale-110 ' src={hero_img} alt="" srcset="" />
             </div>
 
 
@@ -137,16 +180,16 @@ const HomePage = () => {
           </div>
 
           <div className='flex flex-wrap mt-6 self-center justify-center'>
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
+            <JobCard logo={mcd} name={"McDonalds"} role={"Sr. Web Developer"} description={"Cooperate with web designers to match visual design intent"} salary={15000} location={"MH,India"}/>
+            <JobCard logo={apple} name={"Apple"} role={"Jr. Web Developer"} description={"Cooperate with web designers to match visual design intent"} salary={48000} location={"KN,India"}/>
+            <JobCard logo={google} name={"Google"} role={"Sr. Web Developer"} description={"Cooperate with web designers to match visual design intent"} salary={25000} location={"Up,India"}/>
+            <JobCard logo={fb} name={"Facebook"} role={"Jr. Web Developer"} description={"Cooperate with web designers to match visual design intent"} salary={65000} location={"BI,India"}/>
+            <JobCard logo={snap} name={"Snapchat"} role={"Sr. Web Developer"} description={"Cooperate with web designers to match visual design intent"} salary={10000} location={"MH,India"}/>
+            <JobCard logo={insta} name={"Instagram"} role={"Sr. Web Developer"} description={"Cooperate with web designers to match visual design intent"} salary={45000} location={"MH,India"}/>
+            <JobCard logo={slack} name={"Slack"} role={"Jr. Web Developer"} description={"Cooperate with web designers to match visual design intent"} salary={47000} location={"RJ,India"}/>
+            <JobCard logo={airbnb} name={"Airbnb"} role={"Sr. Web Developer"} description={"Cooperate with web designers to match visual design intent"} salary={65000} location={"MH,India"}/>
+            <JobCard logo={xd} name={"Adobe"} role={"Jr. Web Developer"} description={"Cooperate with web designers to match visual design intent"} salary={290000} location={"MH,India"}/>
+            <JobCard logo={Twitter} name={"Twitter"} role={"Sr. Web Developer"} description={"Cooperate with web designers to match visual design intent"} salary={36000} location={"MP,India"}/>
           </div>
 
           <button className='rounded-[50px] bg-[#f7ded7] px-4 py-2 mt-2 font-semibold cursor-pointer'>Show More</button>
@@ -171,38 +214,38 @@ const HomePage = () => {
 
               <div className='flex flex-col justify-center items-center mr-4'>
                 <div className='h-52 w-48 bg-[#FFA9A8] rounded-3xl flex justify-center items-end'>
-                  <img className='h-44 w-40 ' src={person} alt="" srcset="" />
+                  <img className='h-44 w-40 ' src={person1} alt="" srcset="" />
                 </div>
                 <div className='bg-white text-black rounded-2xl px-4 py-3 -mt-12 w-[80%] flex flex-col justify-start items-start'>
-                  <h1 className='font-bold text-lg'>My name</h1>
-                  <p className='font-semibold text-xs text-[#BEBEBE] text-start'>graphic desssss</p>
+                  <h1 className='font-bold text-lg'>E. Howard</h1>
+                  <p className='font-semibold text-xs text-[#BEBEBE] text-start'>Web Designer</p>
                 </div>
               </div>
               <div className='flex flex-col justify-center items-center mr-4'>
                 <div className='h-52 w-48 bg-[#ECB7FF] rounded-3xl flex justify-center items-end'>
-                  <img className='h-44 w-40 ' src={person} alt="" srcset="" />
+                  <img className='h-44 w-40 ' src={person2} alt="" srcset="" />
                 </div>
                 <div className='bg-white text-black rounded-2xl px-4 py-3 -mt-12 w-[80%] flex flex-col justify-start items-start'>
-                  <h1 className='font-bold text-lg'>My name</h1>
-                  <p className='font-semibold text-xs text-[#BEBEBE] text-start'>graphic desssss</p>
+                  <h1 className='font-bold text-lg'>Jane Cooper</h1>
+                  <p className='font-semibold text-xs text-[#BEBEBE] text-start'>Graphic Designer</p>
                 </div>
               </div>
               <div className='flex flex-col justify-center items-center mr-4'>
                 <div className='h-52 w-48 bg-[#D5FFB4] rounded-3xl flex justify-center items-end'>
-                  <img className='h-44 w-40 ' src={person} alt="" srcset="" />
+                  <img className='h-44 w-40 ' src={person3} alt="" srcset="" />
                 </div>
                 <div className='bg-white text-black rounded-2xl px-4 py-3 -mt-12 w-[80%] flex flex-col justify-start items-start'>
-                  <h1 className='font-bold text-lg'>My name</h1>
-                  <p className='font-semibold text-xs text-[#BEBEBE] text-start'>graphic desssss</p>
+                  <h1 className='font-bold text-lg'>Robert Fox</h1>
+                  <p className='font-semibold text-xs text-[#BEBEBE] text-start'>Android Developer</p>
                 </div>
               </div>
               <div className='flex flex-col justify-center items-center mr-4'>
                 <div className='h-52 w-48 bg-[#B0C6FE] rounded-3xl flex justify-center items-end'>
-                  <img className='h-44 w-40 ' src={person} alt="" srcset="" />
+                  <img className='h-44 w-40 ' src={person4} alt="" srcset="" />
                 </div>
                 <div className='bg-white text-black rounded-2xl px-4 py-3 -mt-12 w-[80%] flex flex-col justify-start items-start'>
-                  <h1 className='font-bold text-lg'>My name</h1>
-                  <p className='font-semibold text-xs text-[#BEBEBE] text-start'>graphic desssss</p>
+                  <h1 className='font-bold text-lg'>John Snow</h1>
+                  <p className='font-semibold text-xs text-[#BEBEBE] text-start'>HR Manager</p>
                 </div>
               </div>
               {/* <div className='flex flex-col justify-center items-center mr-4'>
@@ -244,7 +287,8 @@ const HomePage = () => {
       <footer className=" bg-black text-white shadow-md  px-32 pt-10 flex justify-between items-center">
         <div className='flex flex-col text-bold text-start '>
         <h2 className='font-bold font-[Oswald] text-4xl'><span className='font-[Oswald] font-medium text-[#959595]'>hire</span>Monk</h2>           
-        <p className='text-xl font-normal mt-3 text-[#BEBEBE] '> steret name,jhdjsb,<br /> fdsihfhf,Mumbai</p>
+        <p className='text-xl font-normal mt-3 text-[#BEBEBE] '> 11, Vittal Mallya Rd, KG Halli, KP Nagar<br /> Bengaluru, Karnataka 560001
+</p>
         <img className='h-48 z-20 ' src={sparkle} alt="" srcset="" />
         </div>
           <div>

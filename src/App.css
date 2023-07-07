@@ -41,4 +41,38 @@
 }
 
 
+.hero{
+  
+  
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+  height: 632px;
+  max-height: 90%;
+}
+
+.inputBox{
+  height: 60px;
+  border-radius: 15px;
+  padding: 0 20px;
+  background: #fff; 
+  transition: 0.1s;
+  caret-color: #282c34;
+  outline-color: #FFC727;
+  border: 1px solid #b1aeae;
+
+}
+
+.inputBox:focus{
+  border: 3px solid #608edf;
+}
+
+
+
+  
+
+  
+
+
+
 
